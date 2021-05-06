@@ -1,0 +1,26 @@
+version: '3.4'
+
+
+services:
+  order-api:
+    image: ${DOCKER_REGISTRY-}order-api:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Order.API/Dockerfile
+
+  client-api:
+    image: ${DOCKER_REGISTRY-}client-api:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Client.API/Dockerfile
+  payment-api:
+    image: ${DOCKER_REGISTRY-}payment-api:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Payment.API/Dockerfile
+  mobileshoppingapigw:
+    image: ${DOCKER_REGISTRY-}ocelotapigw:${TAG:-latest}
+    build:
+        context: .
+        dockerfile: src/OcelotApiGw/Dockerfile
+

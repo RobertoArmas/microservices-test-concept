@@ -1,0 +1,33 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/{version}/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "client-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/c/{everything}",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{version}/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "order-api",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/{version}/o/{everything}",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+    }
+
+  ],
+  "GlobalConfiguration": {
+    "RequestIdKey": "OcRequestId",
+    "AdministrationPath": "/administration"
+  }
+}

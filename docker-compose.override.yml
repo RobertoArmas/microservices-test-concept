@@ -1,0 +1,40 @@
+version: '3.4'
+
+services:
+  mobileshoppingapigw:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+    - "5200:80"
+    volumes:
+    - ./src/ApiGateways/Mobile.Bff.Shopping/apigw:/app/configuration
+  order-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    expose:
+      - "80"
+    ports:
+      - "5101:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+  payment-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    expose:
+      - "80"
+    ports:
+      - "5103:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+  client-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    expose:
+      - "80"
+    ports:
+      - "5102:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
